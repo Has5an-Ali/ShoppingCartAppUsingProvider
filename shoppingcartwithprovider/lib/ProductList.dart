@@ -12,7 +12,37 @@ class Productlistscreen extends StatefulWidget {
 }
 
 class _ProductlistscreenState extends State<Productlistscreen> {
-  List productimage = [apple, mango, banana, cherry, grapes, orange, peach];
+  final List<String> imagePaths = [
+    'assets/images/peach.png',
+    'assets/images/apple.jpg',
+    'assets/images/banana.png',
+    'assets/images/mango.jpg',
+    'assets/images/orange.png',
+    'assets/images/grapes.png',
+    'assets/images/chery.png',
+  ];
+  final List<String> productname = [
+    "Peach",
+    "Apple",
+    "Banana",
+    "Mango",
+    "Orange",
+    "Grapes",
+    "Cherry"
+  ];
+
+  final List<String> productunit = [
+    "KG",
+    "KG",
+    "Dorzen",
+    "KG",
+    "Dorzen",
+    "KG",
+    "KG"
+  ];
+
+  final List<int> productprice = [400, 350, 180, 320, 200, 340, 500];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +74,7 @@ class _ProductlistscreenState extends State<Productlistscreen> {
           children: [
             Flexible(
               child: ListView.builder(
-                itemCount: productimage.length,
+                itemCount: imagePaths.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     child: Column(
@@ -53,37 +83,47 @@ class _ProductlistscreenState extends State<Productlistscreen> {
                         Row(
                           children: [
                             Image.asset(
-                              productimage[index],
+                              imagePaths[index],
                               width: 115,
                               height: 115,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Orange"),
-                                Row(
-                                  children: [Text("Kg"), Text("200")],
-                                ),
-                                SizedBox(
-                                  height: 40,
-                                  width: 150,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.green,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(productname[index]),
+                                  Row(
+                                    children: [
+                                      Text(productprice[index].toString()),
+                                      SizedBox(
+                                        width: 10,
                                       ),
-                                    ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Add To Cart",
-                                      style: TextStyle(
-                                        color: Colors.white,
+                                      Text(productunit[index])
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 40,
+                                    width: 150,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.green,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                      ),
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Add To Cart",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ],
                         ),
