@@ -25,9 +25,37 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void addTotalPrice(double productPrice) {
+    _totalprice = _totalprice + productPrice;
+    _setPrefItems();
+    notifyListeners();
+  }
+
+  void removeTotalPrice(double productPrice) {
+    _totalprice = _totalprice + productPrice;
+    _setPrefItems();
+    notifyListeners();
+  }
+
+  double getTotalPrice() {
+    _getPrefItems();
+    return _totalprice;
+  }
+
   void addCounter() {
     _counter++;
     _setPrefItems();
     notifyListeners();
+  }
+
+  void removeCounter() {
+    _counter--;
+    _setPrefItems();
+    notifyListeners();
+  }
+
+  int getCounter() {
+    _getPrefItems();
+    return _counter;
   }
 }
