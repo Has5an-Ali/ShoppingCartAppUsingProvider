@@ -3,6 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badge;
 import 'package:shoppingcartwithprovider/Productimagelist.dart';
+import 'package:shoppingcartwithprovider/cart_provider.dart';
+import 'package:shoppingcartwithprovider/cartmodel.dart';
+import 'package:shoppingcartwithprovider/db.dart';
+import 'package:provider/provider.dart';
 
 class Productlistscreen extends StatefulWidget {
   const Productlistscreen({super.key});
@@ -12,6 +16,8 @@ class Productlistscreen extends StatefulWidget {
 }
 
 class _ProductlistscreenState extends State<Productlistscreen> {
+  DBhelp dbhelper = DBhelp();
+
   final List<String> imagePaths = [
     'assets/images/peach.png',
     'assets/images/apple.jpg',
@@ -45,6 +51,7 @@ class _ProductlistscreenState extends State<Productlistscreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -53,11 +60,15 @@ class _ProductlistscreenState extends State<Productlistscreen> {
         ),
         backgroundColor: Colors.green,
         centerTitle: true,
-        actions: const [
+        actions: [
           badge.Badge(
-            badgeContent: Text(
-              '0',
-              style: TextStyle(color: Colors.white),
+            badgeContent: Consumer<CartProvider>(
+              builder: (context, value, child) {
+                return Text(
+                  value.getTotalPrice().toString(),
+                  style: TextStyle(color: Colors.white),
+                );
+              },
             ),
             badgeAnimation: badge.BadgeAnimation.rotation(
                 animationDuration: Duration(seconds: 1)),
@@ -113,7 +124,31 @@ class _ProductlistscreenState extends State<Productlistscreen> {
                                               BorderRadius.circular(10),
                                         ),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        dbhelper!
+                                            .insert(Cart(
+                                                id: index,
+                                                productId: index.toString(),
+                                                productName: productname[index]
+                                                    .toString(),
+                                                initialPrice:
+                                                    productprice[index],
+                                                productPrice:
+                                                    productprice[index],
+                                                quantity: 1,
+                                                unittag: productunit[index]
+                                                    .toString(),
+                                                image: imagePaths[index]
+                                                    .toString()))
+                                            .then((value) {
+                                          print("Prdouct is Added to Cart :)");
+                                          cart.addTotalPrice(double.parse(
+                                              productprice[index].toString()));
+                                          cart.addCounter();
+                                        }).onError((Error, StackTrace) {
+                                          print(Error.toString());
+                                        });
+                                      },
                                       child: Text(
                                         "Add To Cart",
                                         style: TextStyle(
