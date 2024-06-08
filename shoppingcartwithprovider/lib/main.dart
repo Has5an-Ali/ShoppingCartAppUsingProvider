@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoppingcartwithprovider/ProductList.dart';
 import 'package:provider/provider.dart';
 import 'package:shoppingcartwithprovider/cart_provider.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,11 +18,11 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (__) => CartProvider(),
       child: Builder(builder: (BuildContext context) {
-        return MaterialApp(
+        return GetMaterialApp(
           title: 'Flutter',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primaryColor: Colors.blue),
-          home: const Productlistscreen(),
+          home: const ProductListScreen(),
         );
       }),
     );

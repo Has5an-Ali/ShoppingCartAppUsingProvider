@@ -1,3 +1,48 @@
+// class Cart {
+//   late final int? id;
+//   final String? productId;
+//   final String? productName;
+//   final int? initialPrice;
+//   final int? productPrice;
+//   final int? quantity;
+//   final String? unitTag;
+//   final String? image;
+
+//   Cart({
+//     required this.id,
+//     required this.productId,
+//     required this.productName,
+//     required this.initialPrice,
+//     required this.productPrice,
+//     required this.quantity,
+//     required this.unitTag,
+//     required this.image,
+//   });
+
+//   Cart.fromMap(Map<dynamic, dynamic> res)
+//       : id = res['id'],
+//         productId = res['productId'],
+//         productName = res['productName'],
+//         initialPrice = res['initialPrice'],
+//         productPrice = res['productPrice'],
+//         quantity = res['quantity'],
+//         unitTag = res['unitTag'],
+//         image = res['image'];
+
+//   Map<String, Object?> toMap() {
+//     return {
+//       'id': id,
+//       'productId': productId,
+//       'productName': productName,
+//       'initialPrice': initialPrice,
+//       'productPrice': productPrice,
+//       'quantity': quantity,
+//       'unitTag': unitTag,
+//       'image': image,
+//     };
+//   }
+// }
+
 class Cart {
   late final int? id;
   final String? productId;
@@ -5,29 +50,28 @@ class Cart {
   final int? initialPrice;
   final int? productPrice;
   final int? quantity;
-  final String? unittag;
+  final String? unitTag;
   final String? image;
 
-  Cart({
-    required this.id,
-    required this.productId,
-    required this.productName,
-    required this.initialPrice,
-    required this.productPrice,
-    required this.quantity,
-    required this.unittag,
-    required this.image,
-  });
+  Cart(
+      {required this.id,
+      required this.productId,
+      required this.productName,
+      required this.initialPrice,
+      required this.productPrice,
+      required this.quantity,
+      required this.unitTag,
+      required this.image});
 
   Cart.fromMap(Map<dynamic, dynamic> res)
       : id = res['id'],
-        productId = res['productId'],
-        productName = res['productName'],
-        initialPrice = res['initialPrice'],
-        productPrice = res['productPrice'],
-        quantity = res['quantity'],
-        unittag = res['unittag'],
-        image = res['image'];
+        productId = res["productId"],
+        productName = res["productName"],
+        initialPrice = res["initialPrice"],
+        productPrice = res["productPrice"],
+        quantity = res["quantity"],
+        unitTag = res["unitTag"],
+        image = res["image"];
 
   Map<String, Object?> toMap() {
     return {
@@ -37,7 +81,7 @@ class Cart {
       'initialPrice': initialPrice,
       'productPrice': productPrice,
       'quantity': quantity,
-      'unittag': unittag,
+      'unitTag': unitTag,
       'image': image,
     };
   }
