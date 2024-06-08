@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'ProductList.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -25,12 +24,14 @@ class _SplashscreenState extends State<Splashscreen> {
 
   @override
   Widget build(BuildContext context) {
-    Get.to(ProductListScreen());
     return Scaffold(
-      body: Text(
-        "Shopping Cart \n With Provider",
-        style: TextStyle(
-            color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Text(
+          "Shopping Cart \n With Provider",
+          style: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

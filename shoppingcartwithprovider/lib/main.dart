@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:shoppingcartwithprovider/cart_provider.dart';
 import 'package:get/get.dart';
 
+import 'SplashScreen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primaryColor: Colors.blue),
-          home: const ProductListScreen(),
+          home: const Splashscreen(),
         );
       }),
     );
